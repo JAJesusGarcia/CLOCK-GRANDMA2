@@ -6,181 +6,116 @@
 <title>MA2 Clock</title>
 <link href="https://fonts.cdnfonts.com/css/digital-7-mono" rel="stylesheet">
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-body{
-    background:#000;
-    overflow:hidden;
-    height:100vh;
-    width:100vw;
-}
-/* CONTENEDOR */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#000;overflow:hidden;height:100vh;width:100vw;}
 .clock-container{
-    position:relative;
-    width:100vw;
-    height:100vh;
+    position:relative;width:100vw;height:100vh;
     border:2px solid #c79800;
-    box-shadow:
-        inset 0 0 0 1px #ffd55a,
-        inset 0 0 10px rgba(255,190,0,.25),
-        0 0 10px rgba(255,190,0,.4);
+    box-shadow:inset 0 0 0 1px #ffd55a,inset 0 0 10px rgba(255,190,0,.25),0 0 10px rgba(255,190,0,.4);
 }
-/* BARRA SUPERIOR */
 .header{
-    position:relative;
-    height:42px;
-    background:linear-gradient(
-        to bottom,
-        #002cff,
-        #0017b5
-    );
+    position:relative;height:42px;
+    background:linear-gradient(to bottom,#002cff,#0017b5);
     border-bottom:2px solid #c79800;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:white;
-    font-family:Arial, sans-serif;
-    font-weight:bold;
-    font-size:18px;
+    display:flex;align-items:center;justify-content:center;
+    color:white;font-family:Arial,sans-serif;font-weight:bold;font-size:18px;
 }
-/* LED SUPERIOR */
-.header::before{
-    content:"";
-    position:absolute;
-    left:8px;
-    width:22px;
-    height:22px;
-    border-radius:50%;
-    background:radial-gradient(
-        circle,
-        #ffe900 0%,
-        #ffcb00 35%,
-        #a07000 100%
-    );
-    box-shadow:
-        0 0 8px #ffe900,
-        0 0 20px #ffd000;
+.header-led{
+    position:absolute;left:8px;
+    width:22px;height:22px;border-radius:50%;
+    background:radial-gradient(circle,#ffe900 0%,#ffcb00 35%,#a07000 100%);
+    box-shadow:0 0 8px #ffe900,0 0 20px #ffd000;
 }
-/* BOTON DERECHO */
-.header::after{
-    content:"System\AClock";
-    white-space:pre;
-    position:absolute;
-    right:4px;
-    top:2px;
-    width:58px;
-    height:34px;
+.btn-sysclock{
+    position:absolute;right:4px;top:2px;
+    width:58px;height:36px;
     border:1px solid #777;
-    background:#000;
-    color:white;
-    font-size:10px;
-    font-family:Arial;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
+    background:#000;color:white;
+    font-size:10px;font-family:Arial;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    line-height:1.3;text-align:center;cursor:default;
 }
-/* RELOJ */
 .clock{
     height:calc(100vh - 42px);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-family:'Digital-7 Mono', monospace;
-    font-size:19vw;
-    color:#ffbe00;
-    letter-spacing:10px;
-    text-shadow:
-        0 0 4px #ffbe00,
-        0 0 10px rgba(255,190,0,.5),
-        0 0 20px rgba(255,190,0,.2);
+    display:flex;justify-content:center;align-items:center;
+    font-family:'Digital-7 Mono',monospace;
+    font-size:19vw;color:#ffbe00;letter-spacing:10px;
+    text-shadow:0 0 4px #ffbe00,0 0 10px rgba(255,190,0,.5),0 0 20px rgba(255,190,0,.2);
     filter:brightness(0.85);
 }
-/* PARPADEO */
-.blink{
-    animation:blink 1s infinite;
-}
-@keyframes blink{
-    50%{
-        opacity:.15;
-    }
-}
-/* ESQUINA MA2 */
+.blink{animation:blink 1s infinite;}
+@keyframes blink{50%{opacity:.15;}}
 .corner{
-    position:absolute;
-    right:0;
-    bottom:0;
-    width:38px;
-    height:38px;
-    background:
-    repeating-linear-gradient(
-        0deg,
-        transparent 0px,
-        transparent 3px,
-        rgba(255,190,0,.7) 3px,
-        rgba(255,190,0,.7) 4px
-    ),
-    repeating-linear-gradient(
-        90deg,
-        transparent 0px,
-        transparent 3px,
-        rgba(255,190,0,.7) 3px,
-        rgba(255,190,0,.7) 4px
-    );
+    position:absolute;right:0;bottom:0;
 }
-/* FIRMA */
-
 .signature{
-    position:absolute;
-    bottom:15px;
-    width:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    position:absolute;bottom:25px;width:100%;
+    text-align:center;font-family:Arial,sans-serif;
+    text-transform:uppercase;letter-spacing:4px;
+    color:#d0d0d0;font-size:18px;
+    text-shadow:0 0 10px rgba(255,255,255,.2);
 }
-
-.signature img{
-    max-width:1050px;
-    max-height:350px;
-    object-fit:contain;
-
-    filter:
-        drop-shadow(0 0 5px rgba(255,190,0,.5))
-        drop-shadow(0 0 15px rgba(255,190,0,.3));
+.signature span{
+    display:block;margin-top:6px;
+    color:#ffbe00;font-weight:bold;
+    text-shadow:0 0 10px rgba(255,190,0,.7);
 }
 </style>
 </head>
 <body>
 <div class="clock-container">
     <div class="header">
+        <div class="header-led"></div>
         Clock
+        <div class="btn-sysclock">
+            <span>System</span>
+            <span>Clock</span>
+        </div>
     </div>
     <div class="clock" id="clock">
         00<span class="blink">:</span>00<span class="blink">:</span>00
     </div>
-    <!-- <div class="signature">
-        JESUS GARCIA
-        <span>LIGHTING DESIGN & VJ</span>
-    </div> -->
     <div class="signature">
     <img src="TLP.png" alt="Logo">
-</div>
-    <div class="corner"></div>
+    <div class="corner">
+        <canvas id="cornerCanvas"></canvas>
+    </div>
 </div>
 <script>
 function updateClock(){
-    const now = new Date();
-    const h = String(now.getHours()).padStart(2,'0');
-    const m = String(now.getMinutes()).padStart(2,'0');
-    const s = String(now.getSeconds()).padStart(2,'0');
-    document.getElementById('clock').innerHTML =
+    const now=new Date();
+    const h=String(now.getHours()).padStart(2,'0');
+    const m=String(now.getMinutes()).padStart(2,'0');
+    const s=String(now.getSeconds()).padStart(2,'0');
+    document.getElementById('clock').innerHTML=
         `${h}<span class="blink">:</span>${m}<span class="blink">:</span>${s}`;
 }
 updateClock();
 setInterval(updateClock,1000);
+
+// Triángulo con grilla de puntitos
+const canvas = document.getElementById('cornerCanvas');
+const W = 120, H = 70;
+canvas.width = W;
+canvas.height = H;
+const ctx = canvas.getContext('2d');
+
+const step = 7;   // separación entre puntos
+const r = 1.5;    // radio de cada punto
+
+for(let y = 0; y <= H; y += step){
+    for(let x = 0; x <= W; x += step){
+        // triángulo: vértices (0,H), (W,H), (W,0)
+        // solo pintamos si x/W + y/H >= 1
+        if(x/W + y/H >= 1){
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, Math.PI*2);
+            ctx.fillStyle = 'rgba(255,190,0,0.75)';
+            ctx.fill();
+        }
+    }
+}
 </script>
 </body>
 </html>
