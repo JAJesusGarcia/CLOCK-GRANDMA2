@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MA2 Clock</title>
+<link href="https://fonts.cdnfonts.com/css/digital-7-mono" rel="stylesheet">
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    background:#000;
+    overflow:hidden;
+    height:100vh;
+    width:100vw;
+}
+/* CONTENEDOR */
+.clock-container{
+    position:relative;
+    width:100vw;
+    height:100vh;
+    border:2px solid #c79800;
+    box-shadow:
+        inset 0 0 0 1px #ffd55a,
+        inset 0 0 10px rgba(255,190,0,.25),
+        0 0 10px rgba(255,190,0,.4);
+}
+/* BARRA SUPERIOR */
+.header{
+    position:relative;
+    height:42px;
+    background:linear-gradient(
+        to bottom,
+        #002cff,
+        #0017b5
+    );
+    border-bottom:2px solid #c79800;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-family:Arial, sans-serif;
+    font-weight:bold;
+    font-size:18px;
+}
+/* LED SUPERIOR */
+.header::before{
+    content:"";
+    position:absolute;
+    left:8px;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    background:radial-gradient(
+        circle,
+        #ffe900 0%,
+        #ffcb00 35%,
+        #a07000 100%
+    );
+    box-shadow:
+        0 0 8px #ffe900,
+        0 0 20px #ffd000;
+}
+/* BOTON DERECHO */
+.header::after{
+    content:"System\AClock";
+    white-space:pre;
+    position:absolute;
+    right:4px;
+    top:2px;
+    width:58px;
+    height:34px;
+    border:1px solid #777;
+    background:#000;
+    color:white;
+    font-size:10px;
+    font-family:Arial;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+/* RELOJ */
+.clock{
+    height:calc(100vh - 42px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Digital-7 Mono', monospace;
+    font-size:19vw;
+    color:#ffbe00;
+    letter-spacing:10px;
+    text-shadow:
+        0 0 4px #ffbe00,
+        0 0 10px rgba(255,190,0,.5),
+        0 0 20px rgba(255,190,0,.2);
+    filter:brightness(0.85);
+}
+/* PARPADEO */
+.blink{
+    animation:blink 1s infinite;
+}
+@keyframes blink{
+    50%{
+        opacity:.15;
+    }
+}
+/* ESQUINA MA2 */
+.corner{
+    position:absolute;
+    right:0;
+    bottom:0;
+    width:38px;
+    height:38px;
+    background:
+    repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 3px,
+        rgba(255,190,0,.7) 3px,
+        rgba(255,190,0,.7) 4px
+    ),
+    repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 3px,
+        rgba(255,190,0,.7) 3px,
+        rgba(255,190,0,.7) 4px
+    );
+}
+/* FIRMA */
+
+.signature{
+    position:absolute;
+    bottom:15px;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.signature img{
+    max-width:1050px;
+    max-height:350px;
+    object-fit:contain;
+
+    filter:
+        drop-shadow(0 0 5px rgba(255,190,0,.5))
+        drop-shadow(0 0 15px rgba(255,190,0,.3));
+}
+</style>
+</head>
+<body>
+<div class="clock-container">
+    <div class="header">
+        Clock
+    </div>
+    <div class="clock" id="clock">
+        00<span class="blink">:</span>00<span class="blink">:</span>00
+    </div>
+    <!-- <div class="signature">
+        JESUS GARCIA
+        <span>LIGHTING DESIGN & VJ</span>
+    </div> -->
+    <div class="signature">
+    <img src="TLP.png" alt="Logo">
+</div>
+    <div class="corner"></div>
+</div>
+<script>
+function updateClock(){
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2,'0');
+    const m = String(now.getMinutes()).padStart(2,'0');
+    const s = String(now.getSeconds()).padStart(2,'0');
+    document.getElementById('clock').innerHTML =
+        `${h}<span class="blink">:</span>${m}<span class="blink">:</span>${s}`;
+}
+updateClock();
+setInterval(updateClock,1000);
+</script>
+</body>
+</html>
