@@ -1,4 +1,4 @@
-<!-- # 🕒 MA2 Clock Wallpaper
+# 🕒 MA2 Clock Wallpaper
 
 <p align="center">
 <img src="./wallpaper_GrandMA.png" width="900">
@@ -10,10 +10,11 @@ A customizable GrandMA2-inspired digital clock...
 
 If this project was useful, please consider giving it a ⭐ on GitHub.
 
-It really helps the project grow! -->
+It really helps the project grow!
 
+///////////////////////////////////////////////////////////////////////
 
-# 🕒 MA2 Clock Wallpaper
+<!-- # 🕒 MA2 Clock Wallpaper
 
 A customizable **GrandMA2-inspired digital clock** designed to be used as a desktop wallpaper.
 
@@ -76,4 +77,4 @@ I create personalized versions with:
 
 ---
 
-Made with ❤️ by **Jesus Garcia**
+Made with ❤️ by **Jesus Garcia** -->
